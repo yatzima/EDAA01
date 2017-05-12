@@ -1,0 +1,219 @@
+package design;
+
+public class ConnectFour {
+
+	public static final int nbrOfRows = 6;
+	public static final int nbrOfCols = 7;
+	private int lastRow = 0;
+	private int lastCol = 0;
+	public int[][] connectFourBoard;
+
+	public ConnectFour() {
+		connectFourBoard = new int[nbrOfRows][nbrOfCols];
+		clear();
+	}
+
+	/**
+	 * Puts a checker on the specified column and returns true if successful.
+	 * 
+	 * @param col,
+	 *            color
+	 * @return boolean
+	 */
+	public void putChecker(int col, int color) {
+		if (col < nbrOfCols && col >= 0) {
+			for (int row = nbrOfRows - 1; row >= 0; row--) {
+				if (isEmpty(row, col)) {
+					lastRow = row;
+					lastCol = col;
+					connectFourBoard[row][col] = color;
+					break;
+					// return true;
+				}
+			}
+		}
+		// return false;
+	}
+
+	/**
+	 * Returns true if the box is empty.
+	 * 
+	 * @param row,
+	 *            col
+	 * @return boolean
+	 */
+	public boolean isEmpty(int row, int col) {
+		return connectFourBoard[row][col] == 0;
+	}
+
+	/**
+	 * Returns the player color on the specified box.
+	 * 
+	 * @param row,
+	 *            col
+	 * @return int
+	 */
+	public int getBox(int row, int col) {
+		return connectFourBoard[row][col];
+	}
+
+	/**
+	 * Clears the board of checkers.
+	 * 
+	 * @param
+	 * 
+	 * @return void
+	 */
+	public void clear() {
+		for (int row = 0; row < nbrOfRows; row++) {
+			for (int col = 0; col < nbrOfCols; col++) {
+				connectFourBoard[row][col] = 0;
+			}
+		}
+	}
+
+	public void print() {
+		for (int i = 0; i < connectFourBoard.length; i++) {
+			for (int j = 0; j < connectFourBoard[i].length; j++) {
+				System.out.print(connectFourBoard[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	/**
+	 * Returns true if game is ended.
+	 * 
+	 * @param
+	 * 
+	 * @return boolean
+	 */
+	public boolean checkForWin() {
+		int p = getBox(lastRow, lastCol);
+		if (check(lastRow, lastCol, p) && p != 0) {
+			return true;
+		}
+		return false;
+	}
+
+	private boolean check(int row, int col, int p) {
+		int counter = 1;
+		return (checkUp(row, col, p, counter) || checkDown(row, col, p, counter) || checkRight(row, col, p, counter))
+				|| checkLeft(row, col, p, counter) || checkUpLeft(row, col, p, counter)
+				|| checkDownLeft(row, col, p, counter) || checkUpRight(row, col, p, counter)
+				|| checkDownRight(row, col, p, counter);
+	}
+
+	private boolean checkUp(int row, int col, int p, int counter) {
+		if (counter == 4) {
+			return true;
+		}
+		int up = row - 1;
+		if (up < nbrOfRows && up >= 0 && getBox(up, col) == p) {
+			counter++;
+			checkUp(up, col, p, counter);
+		} else if (up < nbrOfRows && up >= 0 && getBox(up, col) != p) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean checkDown(int row, int col, int p, int counter) {
+		if (counter == 4) {
+			return true;
+		}
+		int down = row + 1;
+		if (down < nbrOfRows && down >= 0 && getBox(down, col) == p) {
+			counter++;
+			checkDown(down, col, p, counter);
+		} else if (down < nbrOfRows && down >= 0 && getBox(down, col) != p) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean checkRight(int row, int col, int p, int counter) {
+		if (counter == 4) {
+			return true;
+		}
+		int right = col + 1;
+		if (right < nbrOfCols && right >= 0 && getBox(row, right) == p) {
+			counter++;
+			checkRight(row, right, p, counter);
+		}
+		return false;
+	}
+
+	private boolean checkLeft(int row, int col, int p, int counter) {
+		if (counter == 4) {
+			return true;
+		}
+		int left = col - 1;
+		if (left < nbrOfCols && left >= 0 && getBox(row, left) == p) {
+			counter++;
+			checkLeft(row, left, p, counter);
+		}
+		return false;
+	}
+
+	private boolean checkUpLeft(int row, int col, int p, int counter) {
+		if (counter == 4) {
+			return true;
+		}
+		int left = col - 1;
+		int up = row - 1;
+		if (left < nbrOfCols && left >= 0 && up < nbrOfRows && up >= 0 && getBox(up, left) == p) {
+			counter++;
+			checkUpLeft(up, left, p, counter);
+		}
+		return false;
+	}
+
+	private boolean checkUpRight(int row, int col, int p, int counter) {
+		if (counter == 4) {
+			return true;
+		}
+
+		int right = col + 1;
+		int up = row - 1;
+
+		if (right < nbrOfCols && right >= 0 && up < nbrOfRows && up >= 0 && getBox(up, right) == p) {
+			counter++;
+			checkUpRight(up, right, p, counter);
+		}
+
+		return false;
+	}
+
+	private boolean checkDownLeft(int row, int col, int p, int counter) {
+		if (counter == 4) {
+			return true;
+		}
+
+		int left = col - 1;
+		int down = row + 1;
+
+		if (left < nbrOfCols && left >= 0 && down < nbrOfRows && down >= 0 && getBox(down, left) == p) {
+			counter++;
+			checkDownLeft(down, left, p, counter);
+		}
+
+		return false;
+	}
+
+	private boolean checkDownRight(int row, int col, int p, int counter) {
+		if (counter == 4) {
+			return true;
+		}
+
+		int right = col + 1;
+		int down = row + 1;
+
+		if (right < nbrOfCols && right >= 0 && down < nbrOfRows && down >= 0 && getBox(down, right) == p) {
+			counter++;
+			checkDownRight(down, right, p, counter);
+		}
+
+		return false;
+	}
+}

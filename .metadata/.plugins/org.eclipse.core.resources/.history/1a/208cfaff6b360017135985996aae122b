@@ -1,0 +1,16 @@
+package design;
+
+import java.util.Scanner;
+
+public class test {
+	public static void main(String[] args) {
+		ConnectFour test = new ConnectFour();
+		Scanner scan = new Scanner(System.in);
+		while(!test.checkForWin()){
+			int col = scan.nextInt();
+			int color = scan.nextInt();
+			test.putChecker(col, color);
+			test.print();
+		}
+	}
+}

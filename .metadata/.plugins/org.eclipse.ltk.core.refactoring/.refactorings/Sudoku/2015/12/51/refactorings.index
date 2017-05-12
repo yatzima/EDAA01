@@ -1,0 +1,26 @@
+1450115286367	Rename local variable 'txtfield'
+1450117801509	Delete element
+1450118451446	Rename local variable 'random'
+1450118493713	Rename method 'random'
+1450118527718	Rename method 'set'
+1450118559986	Rename local variable 'newset'
+1450118572531	Rename local variable 'array'
+1450120530312	Rename method 'initBoard'
+1450120549446	Rename field 'board'
+1450138090016	Rename method 'createCell'
+1450138680912	Move method
+1450138683212	Move method
+1450138697382	Move method
+1450138899823	Rename method 'newTP'
+1450138908045	Rename method 'newCell'
+1450138942704	Rename method 'makeControl'
+1450138957461	Rename method 'updateBoard'
+1450139620940	Move method
+1450139624003	Move method
+1450139646244	Move method
+1450140303084	Rename local variable 'rand3'
+1450144205754	Move method
+1450144240320	Move method
+1450144242801	Move method
+1450259783437	Rename local variable 'row'
+1450260032913	Rename local variable 'r'

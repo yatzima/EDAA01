@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;OneLetterTextField.java&apos; to &apos;ITCase/src/graphic&apos;&#x0A;- Original project: &apos;Sudoku&apos;&#x0A;- Destination element: &apos;ITCase/src/graphic&apos;&#x0A;- Original element: &apos;graphic.OneLetterTextField.java&apos;" description="Copy compilation unit" destination="=ITCase/src&lt;graphic" element1="/src&lt;graphic{OneLetterTextField.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1494529704414" units="1" version="1.0"/>
+</session>

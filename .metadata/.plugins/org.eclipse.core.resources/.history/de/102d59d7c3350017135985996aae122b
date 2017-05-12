@@ -1,0 +1,145 @@
+package design;
+
+public class ConnectFour {
+	public static final int nbrOfGrids = 42;
+	public static final int nbrOfRows = 6;
+	public static final int nbrOfCols = 7;
+	private int[][] connectFourBoard;
+
+	public ConnectFour() {
+		connectFourBoard = new int[nbrOfRows][nbrOfCols];
+	}
+
+	/**
+	 * Puts a checker on the specified column and returns true if successful.
+	 * 
+	 * @param col,
+	 *            color
+	 * @return boolean
+	 */
+	public boolean putChecker(int col, int color) {
+		if (col <= nbrOfCols && col >= 0) {
+			for (int row = nbrOfRows; row >= 0; row--) {
+				if (isEmpty(row, col)) {
+					connectFourBoard[row][col] = color;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Returns true if the box is empty.
+	 * 
+	 * @param row,
+	 *            col
+	 * @return boolean
+	 */
+	public boolean isEmpty(int row, int col) {
+		return connectFourBoard[row][col] == 0;
+	}
+
+	/**
+	 * Returns the player color on the specified box.
+	 * 
+	 * @param row,
+	 *            col
+	 * @return int
+	 */
+	public int getBox(int row, int col) {
+		return connectFourBoard[row][col];
+	}
+
+	/**
+	 * Clears the board of checkers.
+	 * 
+	 * @param
+	 * 
+	 * @return void
+	 */
+	public void clear() {
+		for (int row = 0; row <= nbrOfRows; row++) {
+			for (int col = 0; col <= nbrOfCols; col++) {
+				connectFourBoard[row][col] = 0;
+			}
+		}
+	}
+
+	/**
+	 * Returns true if game is ended.
+	 * 
+	 * @param
+	 * 
+	 * @return boolean
+	 */
+	public boolean checkForWin() {
+		for (int row = nbrOfRows; row >= 0; row--) {
+			for (int col = nbrOfCols; col >= 0; col--) {
+				if (!isEmpty(row, col)) {
+					int p = getBox(row, col);
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean check(int row, int col, int p) {
+		int counter = 1;
+		
+			checkDiag(row, col, p);
+			checkVert(row, col, p);
+			checkHoriz(row, col, p);
+
+		if (counter >= 4) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean checkDiag(int row, int col, int p) {
+		return true;
+	}
+
+	private boolean checkVert(int row, int col, int p) {
+		return true;
+	}
+
+	private boolean checkHoriz(int row, int col, int p) {
+		for(int i = col-3; i < col + 3; i++){
+			int count = 1;
+			if(i <= nbrOfCols && i > 0 && getBox(row, col) == p){
+				count++;
+			}
+			else if(i <= nbrOfCols && i > 0 && getBox(row, col) != p){
+				break;
+			}
+			else{
+				continue;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Sets the board
+	 * 
+	 * @param
+	 * 
+	 * @return void
+	 */
+	public void setBoard(int input[][]) {
+		clear();
+		for (int row = 0; row < input[0].length; row++) {
+			for (int col = 0; col < input.length; col++) {
+				connectFourBoard[row][col] = input[row][col];
+			}
+		}
+	}
+	
+	public void newGame() {
+		clear();	
+	}
+
+}
