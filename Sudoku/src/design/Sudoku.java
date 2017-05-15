@@ -1,4 +1,4 @@
-package design;
+ package design;
 
 import java.util.Random;
 
@@ -55,7 +55,7 @@ public class Sudoku {
 	public void newGame() {
 		int randRow, randCol, randVal;
 		Random rand = new Random();
-		for (int i = 0; i < 17; i++) {
+		for (int i = 0; i < 20; i++) {
 			randRow = rand.nextInt(9);
 			randCol = rand.nextInt(9);
 			randVal = rand.nextInt(9) + 1;
@@ -86,7 +86,9 @@ public class Sudoku {
 		int nextr = (col + 1) > 8 ? (row + 1) : row;
 		int nextc = (col + 1) > 8 ? 0 : (col + 1);
 
- 
+		if (row > 8) {
+			return true;
+		}
 
 		if (getVal(row, col) == 0) {
 			for (int i = 1; i <= 9; i++) {
